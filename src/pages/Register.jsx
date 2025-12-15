@@ -5,13 +5,38 @@ import { registerUserAPI } from '../api/api';
 
 const Register = () => {
   // 🔥 States and districts data
-  const statesAndDistricts = {
-    Maharashtra: ["Mumbai", "Pune", "Nagpur", "Nashik"],
-    Karnataka: ["Bangalore", "Mysore", "Hubli"],
-    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
-    Gujarat: ["Ahmedabad", "Surat", "Vadodara"],
-    "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi"]
-  };
+const statesAndDistricts = {
+  "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati"],
+  "Arunachal Pradesh": ["Itanagar", "Tawang", "Pasighat", "Namsai"],
+  Assam: ["Guwahati", "Dibrugarh", "Jorhat", "Silchar"],
+  Bihar: ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur"],
+  Chhattisgarh: ["Raipur", "Bhilai", "Bilaspur", "Durg"],
+  Goa: ["Panaji", "Vasco da Gama", "Margao", "Mapusa"],
+  Gujarat: ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+  Haryana: ["Gurugram", "Faridabad", "Panipat", "Ambala"],
+  "Himachal Pradesh": ["Shimla", "Mandi", "Dharamshala", "Kullu"],
+  "Jammu and Kashmir": ["Srinagar", "Jammu", "Anantnag", "Baramulla"],
+  Jharkhand: ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro"],
+  Karnataka: ["Bangalore", "Mysore", "Hubli", "Mangalore"],
+  Kerala: ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur"],
+  "Madhya Pradesh": ["Indore", "Bhopal", "Jabalpur", "Gwalior"],
+  Maharashtra: ["Mumbai", "Pune", "Nagpur", "Nashik"],
+  Manipur: ["Imphal", "Thoubal", "Bishnupur", "Churachandpur"],
+  Meghalaya: ["Shillong", "Tura", "Jowai", "Nongstoin"],
+  Mizoram: ["Aizawl", "Lunglei", "Saiha", "Champhai"],
+  Nagaland: ["Kohima", "Dimapur", "Mokokchung", "Mon"],
+  Odisha: ["Bhubaneswar", "Cuttack", "Rourkela", "Berhampur"],
+  Punjab: ["Chandigarh", "Ludhiana", "Amritsar", "Jalandhar"],
+  Rajasthan: ["Jaipur", "Udaipur", "Jodhpur", "Ajmer"],
+  Sikkim: ["Gangtok", "Namchi", "Gyalshing", "Mangan"],
+  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Salem"],
+  Telangana: ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar"],
+  Tripura: ["Agartala", "Dharmanagar", "Udaipur", "Kailashahar"],
+  "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra"],
+  Uttarakhand: ["Dehradun", "Haridwar", "Nainital", "Rishikesh"],
+  "West Bengal": ["Kolkata", "Siliguri", "Durgapur", "Asansol"]
+};
+
 
   const [formData, setFormData] = useState({
     name: '',
