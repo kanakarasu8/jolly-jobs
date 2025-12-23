@@ -11,6 +11,11 @@ import WorkerDashboard from './pages/WorkerDashboard';
 import EmployerDashboard from './pages/EmployerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import JobDetails from './pages/JobDetails';
+import ContactUs from './pages/ContactUs';
+import DynamicShapes from './pages/DynamicShapes ';
+import WaterfallDrops from './pages/WaterfallDrops ';
+import LeftPanel3D from './pages/LeftPanel3D';
+
 
 function App() {
   return (
@@ -28,7 +33,13 @@ function App() {
               <Route path="/worker-dashboard" element={<WorkerDashboard />} />
               <Route path="/employer-dashboard" element={<EmployerDashboard />} />
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
-               <Route path="/jobs/:id" element={<JobDetails />} />
+              <Route path="/jobs/:id" element={<JobDetails />} />
+              <Route path="/contactus" element={<ContactUs />} />
+              <Route path="/dynamicshapes" element={<DynamicShapes/>} />
+              <Route path="/waterdrop" element={<WaterfallDrops/>} />
+              <Route path="/leftpanel3d" element={<LeftPanel3D/>} />
+             
+
             </Routes>
           </main>
         </div>

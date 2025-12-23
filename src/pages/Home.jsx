@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useWork } from '../context/WorkContext';
+import DynamicShapes from '../pages/DynamicShapes ';
+import WaterfallDrops from '../pages/WaterfallDrops ';
 
 const Home = () => {
   const { user, jobs } = useWork();
@@ -23,12 +25,17 @@ const Home = () => {
   return (
     <div className="min-h-screen">
      {/* HERO SECTION */}
-<section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white">
+<section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-teal-500 to-cyan-600 text-white"
+>
   {/* Background blur shapes */}
   <div className="absolute -top-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
   <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-pink-400/20 rounded-full blur-3xl" />
 
-  <div className="relative max-w-7xl mx-auto px-6 py-24 text-center">
+  {/* Dynamic random shapes */}
+   <WaterfallDrops />
+  <DynamicShapes />
+
+  <div className="relative max-w-7xl mx-auto px-6 py-24 text-center z-10">
     <span className="inline-block bg-white/20 backdrop-blur px-4 py-1 rounded-full text-sm font-medium mb-4">
       🚀 Trusted by 10,000+ Job Seekers
     </span>
@@ -63,20 +70,33 @@ const Home = () => {
     </div>
 
     {/* Stats */}
-    <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto text-sm md:text-base">
-      <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-        <p className="text-2xl font-bold">5K+</p>
-        <p className="opacity-80">Jobs Posted</p>
-      </div>
-      <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-        <p className="text-2xl font-bold">3K+</p>
-        <p className="opacity-80">Employers</p>
-      </div>
-      <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-        <p className="text-2xl font-bold">10K+</p>
-        <p className="opacity-80">Workers</p>
-      </div>
+   {/* Stats – Icon Style */}
+<div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+  <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 flex items-center gap-4">
+    <span className="text-3xl">📄</span>
+    <div>
+      <p className="text-2xl font-bold">5K+</p>
+      <p className="opacity-80">Jobs Posted</p>
     </div>
+  </div>
+
+  <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 flex items-center gap-4">
+    <span className="text-3xl">🏢</span>
+    <div>
+      <p className="text-2xl font-bold">3K+</p>
+      <p className="opacity-80">Employers</p>
+    </div>
+  </div>
+
+  <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 flex items-center gap-4">
+    <span className="text-3xl">👷</span>
+    <div>
+      <p className="text-2xl font-bold">10K+</p>
+      <p className="opacity-80">Workers</p>
+    </div>
+  </div>
+</div>
+
   </div>
 </section>
 
@@ -132,7 +152,7 @@ const Home = () => {
                 to={`/jobs/${job.id}`}
                 className="mt-6 inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold px-5 py-2 rounded-xl shadow-lg hover:scale-105 transition-transform duration-200 text-center"
               >
-                Apply Now
+                Details
               </Link>
 
               {/* Neon glow effect */}
@@ -172,13 +192,6 @@ const Home = () => {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
       {/* WHY CHOOSE US */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-6 text-center">
@@ -189,7 +202,7 @@ const Home = () => {
               Employers connect directly with job seekers
             </p>
           </div>
-          <div className="bg-white p-6 rounded-xl shadow">
+          <div className="bg-blue p-6 rounded-xl shadow">
             <div className="text-4xl mb-2">📍</div>
             <h4 className="font-bold text-lg mb-2">Local Jobs</h4>
             <p className="text-gray-600 text-sm">
@@ -205,8 +218,23 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* FOOTER */}
+<footer className="bg-gray-900 text-gray-300 py-8 mt-12">
+  <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+    <p className="text-sm mb-4 md:mb-0">
+      © {new Date().getFullYear()} Fulcrum Digital. All rights reserved.
+    </p>
+    <div className="flex gap-4">
+      <a href="/privacy" className="hover:text-white text-sm transition">Privacy Policy</a>
+      <a href="/terms" className="hover:text-white text-sm transition">Terms of Service</a>
+      <a href="/contactus" className="hover:text-white text-sm transition">Contact Us</a>
+    </div>
+  </div>
+</footer>
     </div>
   );
 };
+
+
 
 export default Home;

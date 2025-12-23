@@ -23,15 +23,32 @@ export const postJobAPI = async (jobData, email) => {
 
 // Fetch all jobs (admin only)
 export const fetchJobsAPI = async () => {
-  const res = await axios.get(`${API_BASE}/job/all`);
+  const res = await axios.get(`${API_BASE}/admin/jobs`); // public endpoint
   return res.data;
 };
+
+
+// Fetch job posts by employer email
+export const fetchJobsByEmployer = async (email) => {
+  if (!email) {
+    throw new Error("Employer email is required");
+  }
+
+  const res = await axios.get(`${API_BASE}/job/by-employer`, {
+    params: { email } // MUST be "email"
+  });
+
+  return res.data;
+};
+
 
 // Fetch all users (admin only)
 export const fetchUsersAPI = async (adminEmail) => {
   if (!adminEmail) throw new Error("adminEmail is required to fetch users.");
+
   const res = await axios.get(`${API_BASE}/admin/users`, {
-    params: { adminEmail } // <- send as query param
+    params: { adminEmail } // sent as query param
   });
+
   return res.data;
 };

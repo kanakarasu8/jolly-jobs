@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useWork } from '../context/WorkContext';
 import { loginUserAPI, fetchUsersAPI } from '../api/api';
+import LeftPanel3D from '../pages/LeftPanel3D' // <-- Import here
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -33,21 +34,24 @@ const Login = () => {
     <div className="flex flex-col md:flex-row min-h-screen">
 
       {/* LEFT PANEL */}
-      <div className="w-full md:w-1/2 bg-blue-600 text-white flex flex-col justify-center items-center p-8 md:p-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Welcome Back!
-        </h1>
+      <div className="w-full md:w-1/2 bg-blue-600 text-white flex flex-col justify-center items-center p-8 md:p-12 relative overflow-hidden">
+  {/* Nature floating shapes in background */}
+  <LeftPanel3D />
 
-        <p className="text-base md:text-lg text-gray-100 mb-6 text-center max-w-md">
-          Access your account to explore jobs, manage applications, and grow your career.
-        </p>
+  {/* Main content in front */}
+  <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center z-10 relative">
+    Welcome Back!
+  </h1>
+  <p className="text-base md:text-lg text-gray-100 mb-6 text-center max-w-md z-10 relative">
+    Access your account to explore jobs, manage applications, and grow your career.
+  </p>
+  <img
+    src="https://image2url.com/images/1766051960103-e203b4cd-776d-48c2-b332-27ece22cab01.jpg"
+    alt="Business illustration"
+    className="rounded-lg shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md z-10 relative"
+  />
+</div>
 
-        <img
-          src="https://image2url.com/images/1766051960103-e203b4cd-776d-48c2-b332-27ece22cab01.jpg"
-          alt="Business illustration"
-          className="rounded-lg shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md"
-        />
-      </div>
 
       {/* RIGHT LOGIN FORM */}
       <div className="flex-1 flex justify-center items-center bg-gray-100">
@@ -108,7 +112,6 @@ const Login = () => {
           </p>
         </div>
       </div>
-
     </div>
   );
 };
