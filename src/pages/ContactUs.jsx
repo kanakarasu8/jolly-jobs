@@ -32,16 +32,16 @@ const ContactUs = () => {
           />
           <h2 className="text-3xl font-bold mb-2">Get in Touch</h2>
           <p className="text-gray-100 text-center">
-            Have questions or feedback? Our team at Fulcrum Digital Jobs is here to help.
+            Have questions or feedback? Our team at Jolly Jobs is here to help.
             Reach out to us anytime!
           </p>
           <div className="mt-6 text-gray-100 text-center space-y-1">
-            <p>Email: support@fulcrumdigitaljobs.com</p>
-            <p>Phone: +91 123 456 7890</p>
+            <p>Email: support@jollyjobs.com</p>
+            <p>Phone: +91 7845575072</p>
             <p>Address:</p>
-            <p>Sanhasa Square,</p>
-            <p>Bharathi Park 3rd Cross,</p>
-            <p>Coimbatore, Tamil Nadu 641043</p>
+            <p>Perumal Kovil,</p>
+            <p>Erakundappatti,</p>
+            <p>Salem, Tamil Nadu 636451</p>
           </div>
         </div>
 
@@ -121,3 +121,4 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
+
