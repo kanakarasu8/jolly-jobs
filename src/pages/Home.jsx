@@ -222,7 +222,7 @@ const Home = () => {
 <footer className="bg-gray-900 text-gray-300 py-8 mt-12">
   <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
     <p className="text-sm mb-4 md:mb-0">
-      © {new Date().getFullYear()} Fulcrum Digital. All rights reserved.
+      © {new Date().getFullYear()} Jolly Jobs. All rights reserved.
     </p>
     <div className="flex gap-4">
       <a href="/privacy" className="hover:text-white text-sm transition">Privacy Policy</a>
@@ -238,3 +238,4 @@ const Home = () => {
 
 
 export default Home;
+
