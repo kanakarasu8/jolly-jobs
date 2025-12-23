@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useWork } from '../context/WorkContext';
+import { Link } from 'react-router-dom';
 
 const EmployerDashboard = () => {
-  const { user, jobs, applications } = useWork();
+  const { user, employerJobs, applications, fetchEmployerJobs } = useWork();
 
-  const employerJobs = jobs.filter(job => job.employer === user?.name);
-  const jobApplications = applications.filter(app => 
-    employerJobs.some(job => job.id === app.jobId)
+  // Fetch employer jobs whenever user is set
+  useEffect(() => {
+    if (user?.email) {
+      fetchEmployerJobs(user.email);
+    }
+  }, [user, fetchEmployerJobs]);
+
+  // Filter applications for this employer's jobs
+  const jobApplications = applications.filter(app =>
+    employerJobs?.some(job => job.id === app.jobId)
   );
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Employer Dashboard</h1>
           <p className="text-gray-600">Manage your company profile and job postings</p>
         </div>
 
+        {/* Company Profile */}
         {user && (
           <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">Company Profile</h2>
@@ -45,9 +55,10 @@ const EmployerDashboard = () => {
           </div>
         )}
 
+        {/* Stats */}
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">{employerJobs.length}</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">{employerJobs?.length || 0}</div>
             <div className="text-gray-600 font-medium">Jobs Posted</div>
           </div>
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
@@ -56,39 +67,55 @@ const EmployerDashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg p-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4 sm:mb-0">My Job Posts</h2>
-            <a 
-              href="/post-job" 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 inline-flex items-center"
-            >
-              <span className="mr-2">+</span> Post New Job
-            </a>
-          </div>
-          
-          {employerJobs.length > 0 ? (
+       {/* Job Posts */}
+<div className="bg-white rounded-2xl shadow-lg p-6">
+  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+    <h2 className="text-2xl font-semibold text-gray-900 mb-4 sm:mb-0">My Job Posts</h2>
+    
+    {/* Show button only if user is an employer */}
+  {user?.userType === 'employer' && (
+  <Link
+    to="/post-job"
+    className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 inline-flex items-center"
+  >
+    <span className="mr-2">+</span> Post Job
+  </Link>
+)}
+
+
+  </div>
+
+
+
+          {employerJobs && employerJobs.length > 0 ? (
             <div className="space-y-6">
               {employerJobs.map(job => (
-                <div key={job.id} className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+                <div
+                  key={job.id}
+                  className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow duration-200"
+                >
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                     <div className="flex-1">
                       <h4 className="text-xl font-semibold text-gray-900 mb-2">{job.title}</h4>
                       <p className="text-gray-600 mb-2">
-                        {job.location} • ₹{job.salaryRange.min} - ₹{job.salaryRange.max} {job.salaryType}
+                        {job.location} • ₹{job.salaryRange?.min || 0} - ₹{job.salaryRange?.max || 0} {job.salaryType} 
                       </p>
                       <p className="text-gray-500 text-sm mb-3">
-                        Posted: {job.postedDate} • 
-                        Applications: <span className="font-medium text-blue-600">
+                        Posted: {job.postedDate || '—'} • Applications:{' '}
+                        <span className="font-medium text-blue-600">
                           {applications.filter(app => app.jobId === job.id).length}
                         </span>
                       </p>
                     </div>
                     <div className="mt-4 lg:mt-0 lg:ml-6">
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                        job.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                      }`}>
-                        {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                          job.status === 'active'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-red-100 text-red-800'
+                        }`}
+                      >
+                        {job.status ? job.status.charAt(0).toUpperCase() + job.status.slice(1) : 'Active'}
                       </span>
                     </div>
                   </div>
@@ -100,12 +127,14 @@ const EmployerDashboard = () => {
               <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-gray-400 text-2xl">💼</span>
               </div>
-              <h4 className="text-xl font-semibold text-gray-900 mb-3">No jobs posted yet</h4>
+              <h4 className="text-xl font-semibold text-gray-900 mb-3">
+                No jobs posted yet
+              </h4>
               <p className="text-gray-600 mb-6 max-w-md mx-auto">
                 Start posting job opportunities to find qualified workers for your company.
               </p>
-              <a 
-                href="/post-job" 
+              <a
+                href="/post-job"
                 className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
               >
                 Post Your First Job
