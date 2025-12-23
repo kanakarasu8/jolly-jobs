@@ -15,7 +15,7 @@ const DynamicShapes = () => {
       const left = Math.random() * 100;
       const speed = Math.random() * 8 + 3; // 3s-11s
       const type = types[Math.floor(Math.random() * types.length)];
-      const text = Math.random() > 0.5 ? "FD" : "Fulcrum";
+      const text = Math.random() > 0.5 ? "JJ" : "JollyJobs";
       const gradientColors = [
         "from-red-400 to-red-200",
         "from-yellow-400 to-yellow-200",
@@ -97,3 +97,4 @@ const DynamicShapes = () => {
 };
 
 export default DynamicShapes;
+
